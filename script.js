@@ -9,3 +9,19 @@ function getComputerChoice() {
     return "Scissors";
   }
 }
+
+function playRound(playerSelection, computerSelection) {
+  playerSelection = capitalizeFirstLetter(playerSelection);
+}
+
+function capitalizeFirstLetter(string) {
+  let length = string.length;
+  
+  if (length === 0) {
+    return string;
+  } else if (length === 1) {
+    return string.toUpperCase();
+  } else {
+    return string[0].toUpperCase() + string.slice(1).toLowerCase();
+  }
+}
