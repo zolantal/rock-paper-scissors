@@ -53,7 +53,7 @@ function game() {
   let playerScore;
   let computerScore;
   
-  for (let index = 0; index < 5; i++) {
+  for (let i = 0; i < 5; i++) {
     let playerSelection =
       prompt("What do you want to play this round (rock, paper or scissors)?");
 
