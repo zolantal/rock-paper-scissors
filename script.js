@@ -50,8 +50,8 @@ function capitalizeFirstLetter(string) {
 }
 
 function game() {
-  let playerScore;
-  let computerScore;
+  let playerScore = 0;
+  let computerScore = 0;
   
   for (let i = 0; i < 5; i++) {
     let playerSelection =
