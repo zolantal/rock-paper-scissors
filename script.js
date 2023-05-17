@@ -26,11 +26,14 @@ function playRound(playerSelection, computerSelection) {
   }
 
   if (winner === null) {
-    return ["tie", `It's a tie! Both played ${playerSelection}.`]
+    alert(`It's a tie! Both played ${playerSelection}.`);
+    return "tie";
   } else if (winner === "computer") {
-    return ["loss", `You lose! ${computerSelection} beats ${playerSelection}.`]
+    alert(`You lose! ${computerSelection} beats ${playerSelection}.`);
+    return "loss";
   } else if (winner === "player") {
-    return ["win", `You win! ${playerSelection} beats ${computerSelection}.`]
+    alert(`You win! ${playerSelection} beats ${computerSelection}.`);
+    return "win";
   }
 }
 
@@ -46,3 +49,42 @@ function capitalizeFirstLetter(string) {
   }
 }
 
+function game() {
+  let playerScore;
+  let computerScore;
+  
+  for (let index = 0; index < 5; i++) {
+    let playerSelection =
+      prompt("What do you want to play this round (rock, paper or scissors)?");
+
+    let result = playRound(playerSelection, getComputerChoice());
+
+    if (result === "win") {
+      playerScore++;
+    } else if (result === "loss") {
+      computerScore++;
+    }
+  }
+
+  alert("Game Over!");
+
+  if (playerScore > computerScore) {
+    alert("Congratulations! You won the game.");
+  } else if (computerScore < playerScore) {
+    alert("You lost the game! Better luck next time!");
+  } else {
+    alert("It's a tie overall!");
+  }
+}
+
+while (true) {
+  game();
+
+  let newGame = confirm("Start new game?");
+
+  if (newGame) {
+    game();
+  } else {
+    break;
+  }
+}
