@@ -26,11 +26,11 @@ function playRound(playerSelection, computerSelection) {
   }
 
   if (winner === null) {
-    return `It's a tie! Both played ${playerSelection}.`
+    return ["tie", `It's a tie! Both played ${playerSelection}.`]
   } else if (winner === "computer") {
-    return `You lose! ${computerSelection} beats ${playerSelection}.`
+    return ["loss", `You lose! ${computerSelection} beats ${playerSelection}.`]
   } else if (winner === "player") {
-    return `You win! ${playerSelection} beats ${computerSelection}.`
+    return ["win", `You win! ${playerSelection} beats ${computerSelection}.`]
   }
 }
 
@@ -45,3 +45,4 @@ function capitalizeFirstLetter(string) {
     return string[0].toUpperCase() + string.slice(1).toLowerCase();
   }
 }
+
