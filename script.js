@@ -12,6 +12,26 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
   playerSelection = capitalizeFirstLetter(playerSelection);
+
+  let winner;
+
+  if (playerSelection === computerSelection) {
+    winner = null;
+  } else if (playerSelection === "Rock") {
+    computerSelection === "Paper" ? winner = "computer" : winner = "player"; 
+  } else if (playerSelection === "Paper") {
+    computerSelection === "Scissors" ? winner = "computer" : winner = "player";
+  } else if (playerSelection === "Scissors") {
+    computerSelection === "Rock" ? winner = "computer" : winner = "player";
+  }
+
+  if (winner === null) {
+    return `It's a tie! Both played ${playerSelection}.`
+  } else if (winner === "computer") {
+    return `You lose! ${computerSelection} beats ${playerSelection}.`
+  } else if (winner === "player") {
+    return `You win! ${playerSelection} beats ${computerSelection}.`
+  }
 }
 
 function capitalizeFirstLetter(string) {
