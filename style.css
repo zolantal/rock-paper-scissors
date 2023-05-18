@@ -4,9 +4,25 @@ body {
   align-items: center;
 }
 
+.title {
+  font-size: 48pt;
+  text-align: center;
+}
+
 #new-game {
   margin: 25px;
   font-size: 16pt;
+}
+
+#main-display {
+  font-size: 36px;
+  height: 70px;
+  text-align: center;
+}
+
+#message-display {
+  height: 70px;
+  text-align: center;
 }
 
 .play-buttons {

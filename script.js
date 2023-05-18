@@ -26,13 +26,13 @@ function playRound(playerSelection, computerSelection) {
   }
 
   if (winner === null) {
-    alert(`It's a tie! Both played ${playerSelection}.`);
+    // alert(`It's a tie! Both played ${playerSelection}.`);
     return "tie";
   } else if (winner === "computer") {
-    alert(`You lose! ${computerSelection} beats ${playerSelection}.`);
+    // alert(`You lose! ${computerSelection} beats ${playerSelection}.`);
     return "loss";
   } else if (winner === "player") {
-    alert(`You win! ${playerSelection} beats ${computerSelection}.`);
+    // alert(`You win! ${playerSelection} beats ${computerSelection}.`);
     return "win";
   }
 }
@@ -49,43 +49,73 @@ function capitalizeFirstLetter(string) {
   }
 }
 
-function game() {
-  let playerScore = 0;
-  let computerScore = 0;
-  
-  const playerScoreDisplay = document.querySelector("#player-score");
-  const computerScoreDisplay = document.querySelector("#computer-score");
-  playerScoreDisplay.textContent = "0";
-  computerScoreDisplay.textContent = "0";
+function resetGame() {
+  playerScore = 0;
+  computerScore = 0;
 
-  while (playerScore < 5 && computerScore < 5) {
-    const playButtons = document.querySelectorAll(".play-button");
-    // playButtons.forEach(button => button.addEventListener("click", getButtonId))
-    
-    let playerSelection;
+  updateScoreDisplay();
+  mainDisplay.textContent = gameGoal;
+  messageDisplay.textContent = "";
+}
 
-    let result = playRound(playerSelection, getComputerChoice());
+function updateScoreDisplay() {
+  playerScoreDisplay.textContent = playerScore;
+  computerScoreDisplay.textContent = computerScore;
+}
 
-    if (result === "win") {
-      playerScore++;
-    } else if (result === "loss") {
-      computerScore++;
-    }
+function game(e) {
+  if (playerScore >= 5 || computerScore >= 5) {
+    return;
   }
 
-  alert("Game Over!");
+  let playerSelection = e.target.id;
+  let computerSelection = getComputerChoice();
+  let result = playRound(playerSelection, computerSelection);
 
-  if (playerScore > computerScore) {
-    alert("Congratulations! You won the game.");
-  } else if (computerScore < playerScore) {
-    alert("You lost the game! Better luck next time!");
-  } else {
-    alert("It's a tie overall!");
+  if (result === "win") {
+    messageDisplay.innerHTML = `You won this round!
+      <br>Computer played ${computerSelection}
+      <br>${playerSelection} beats ${computerSelection}.`
+    playerScore++;
+  } else if (result === "loss") {
+    messageDisplay.innerHTML = `You lost this round!
+      <br>Computer played ${computerSelection}
+      <br>${computerSelection} beats ${playerSelection}.`
+    computerScore++;
+  } else if (result === "tie") {
+    messageDisplay.innerHTML = `It's a tie!
+      <br>Computer played ${computerSelection}
+      <br>Both played ${playerSelection}.`
+  }
+  updateScoreDisplay();
+
+  if (playerScore === 5 || computerScore === 5) {
+    mainDisplay.innerHTML = "GAME OVER";
+
+    if (playerScore > computerScore) {
+      mainDisplay.innerHTML += "<br>You win!"
+    } else if (computerScore > playerScore) {
+      mainDisplay.innerHTML += "<br>You lose!"
+    } else {
+      mainDisplay.innerHTML += "<br>Tie!"
+    }
   }
 }
 
 const newGameButton = document.querySelector("#new-game");
-newGameButton.addEventListener("click", game)
+newGameButton.addEventListener("click", resetGame);
+
+const mainDisplay = document.querySelector("#main-display");
+const gameGoal = mainDisplay.textContent;
+const messageDisplay = document.querySelector("#message-display");
+
+let playerScore = 0;
+let computerScore = 0;
+const playerScoreDisplay = document.querySelector("#player-score");
+const computerScoreDisplay = document.querySelector("#computer-score");
+
+const playButtons = document.querySelectorAll(".play-button");
+playButtons.forEach(button => button.addEventListener("click", game));
 
 // while (true) {
 //   game();
