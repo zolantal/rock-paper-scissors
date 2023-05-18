@@ -53,9 +53,16 @@ function game() {
   let playerScore = 0;
   let computerScore = 0;
   
-  for (let i = 0; i < 5; i++) {
-    let playerSelection =
-      prompt("What do you want to play this round (rock, paper or scissors)?");
+  const playerScoreDisplay = document.querySelector("#player-score");
+  const computerScoreDisplay = document.querySelector("#computer-score");
+  playerScoreDisplay.textContent = "0";
+  computerScoreDisplay.textContent = "0";
+
+  while (playerScore < 5 && computerScore < 5) {
+    const playButtons = document.querySelectorAll(".play-button");
+    // playButtons.forEach(button => button.addEventListener("click", getButtonId))
+    
+    let playerSelection;
 
     let result = playRound(playerSelection, getComputerChoice());
 
@@ -77,14 +84,18 @@ function game() {
   }
 }
 
-while (true) {
-  game();
+const newGameButton = document.querySelector("#new-game");
+newGameButton.addEventListener("click", game)
 
-  let newGame = confirm("Start new game?");
+// while (true) {
+//   game();
 
-  if (newGame) {
-    game();
-  } else {
-    break;
-  }
-}
+//   let newGame = confirm("Start new game?");
+
+//   if (newGame) {
+//     game();
+//   } else {
+//     break;
+//   }
+// }
+
