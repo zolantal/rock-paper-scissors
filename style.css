@@ -45,4 +45,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 16pt;
+}
+
+.score {
+  font-size: 24pt;
+  font-weight: bold;
 }
