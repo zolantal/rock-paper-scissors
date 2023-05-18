@@ -26,13 +26,10 @@ function playRound(playerSelection, computerSelection) {
   }
 
   if (winner === null) {
-    // alert(`It's a tie! Both played ${playerSelection}.`);
     return "tie";
   } else if (winner === "computer") {
-    // alert(`You lose! ${computerSelection} beats ${playerSelection}.`);
     return "loss";
   } else if (winner === "player") {
-    // alert(`You win! ${playerSelection} beats ${computerSelection}.`);
     return "win";
   }
 }
@@ -116,16 +113,4 @@ const computerScoreDisplay = document.querySelector("#computer-score");
 
 const playButtons = document.querySelectorAll(".play-button");
 playButtons.forEach(button => button.addEventListener("click", game));
-
-// while (true) {
-//   game();
-
-//   let newGame = confirm("Start new game?");
-
-//   if (newGame) {
-//     game();
-//   } else {
-//     break;
-//   }
-// }
 
